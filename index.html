@@ -2,148 +2,212 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Esthetics Study Lab: New Mexico Licensing Prep</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f1ec">
+<title>Esthetics Study Lab</title>
+<meta name="description" content="Flashcards, practice quizzes and a study plan for the New Mexico esthetician licensing exams.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f4f1; --card:#ffffff; --ink:#22252b; --muted:#646a73; --line:#e3dfd9;
-  --accent:#1f7a74; --accent-soft:#e3f1ef;
-  --l1:#2f7d4f; --l1-soft:#e7f3ec;
-  --l2:#2b5fa8; --l2-soft:#e6eef9;
-  --l3:#7a3f9a; --l3-soft:#f1e8f6;
-  --bad:#b4372f; --bad-soft:#fbe9e7;
+  --cream:#f7f1ec; --paper:#fffdfb; --ink:#2e2a2b; --soft:#6f6566; --line:#ece2dc;
+  --rose:#c9877f; --rose-deep:#a8645c; --rose-mist:#f6e6e2;
+  --l1:#7d9d84; --l1-mist:#e9f1ea;
+  --l2:#c9877f; --l2-mist:#f7e8e5;
+  --l3:#9a87b8; --l3-mist:#efeaf6;
+  --l4:#c09a5b; --l4-mist:#f6eedf;
+  --good:#5f9471; --good-mist:#e6f2ea; --miss:#c1665a; --miss-mist:#f9e6e3;
+  --shadow:0 1px 2px rgba(80,50,45,.05),0 8px 28px rgba(120,80,70,.08);
+  --radius:22px;
 }
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;font-size:17px;line-height:1.5}
-.wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px}
-h1{font-size:1.55rem;margin:0 0 4px;font-weight:800;letter-spacing:-.01em}
-.sub{color:var(--muted);margin:0 0 18px;font-size:.95rem}
-.tabs{display:flex;gap:6px;background:#ebe7e1;padding:5px;border-radius:12px;margin-bottom:18px}
-.tab{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:9px;font:inherit;font-weight:700;color:var(--muted);cursor:pointer;font-size:.95rem}
-.tab.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.view{display:none}.view.on{display:block}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
-.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 13px;font:inherit;font-size:.88rem;font-weight:700;color:var(--muted);cursor:pointer}
-.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.chip.l1.on{border-color:var(--l1);background:var(--l1-soft);color:var(--l1)}
-.chip.l2.on{border-color:var(--l2);background:var(--l2-soft);color:var(--l2)}
-.chip.l3.on{border-color:var(--l3);background:var(--l3-soft);color:var(--l3)}
-.label{font-size:.8rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.55;font-size:16.5px;
+  background-image:radial-gradient(1200px 600px at 110% -10%,#f3dcd5 0%,transparent 60%),radial-gradient(900px 500px at -20% 20%,#e7efe6 0%,transparent 55%);
+  background-attachment:fixed;min-height:100vh}
+button{font:inherit;color:inherit}
+.wrap{max-width:760px;margin:0 auto;padding:max(22px,env(safe-area-inset-top)) 18px 110px}
+
+/* header */
+.top{display:flex;align-items:center;gap:12px;margin:4px 0 22px}
+.mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#e8b8ad,#c9877f);display:grid;place-items:center;box-shadow:0 6px 16px rgba(201,135,127,.35);flex:none}
+.mark svg{width:24px;height:24px}
+.title h1{font-family:Fraunces,serif;font-weight:600;font-size:1.55rem;letter-spacing:-.01em;margin:0;line-height:1.1}
+.title p{margin:2px 0 0;color:var(--soft);font-size:.9rem}
+
+/* bottom nav */
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom));z-index:20;
+  display:flex;gap:4px;background:rgba(255,253,251,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:6px;border-radius:999px;box-shadow:0 10px 30px rgba(90,60,55,.16);border:1px solid var(--line)}
+.nav button{border:0;background:transparent;padding:10px 16px;border-radius:999px;font-weight:600;font-size:.92rem;color:var(--soft);cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.nav button svg{width:18px;height:18px}
+.nav button.on{background:var(--ink);color:#fff}
+.view{display:none;animation:fade .35s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* hero card */
+.hello{background:var(--paper);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);margin-bottom:18px;display:flex;gap:16px;align-items:center}
+.hello h2{font-family:Fraunces,serif;font-weight:600;font-size:1.25rem;margin:0 0 2px}
+.hello p{margin:0;color:var(--soft);font-size:.93rem}
+.ring{flex:none;width:64px;height:64px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring span{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+
+/* chips */
+.row{display:flex;gap:7px;overflow-x:auto;padding:2px 2px 6px;margin:0 -2px 8px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 14px;font-size:.86rem;font-weight:600;color:var(--soft);cursor:pointer;transition:.2s}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.l1.on{background:var(--l1);border-color:var(--l1)}
+.chip.l2.on{background:var(--l2);border-color:var(--l2)}
+.chip.l3.on{background:var(--l3);border-color:var(--l3)}
+.chip.l4.on{background:var(--l4);border-color:var(--l4)}
+.lbl{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--soft);margin:12px 2px 6px}
 
 /* flashcard */
-.stage{perspective:1400px;margin:6px 0 14px}
-.fc{position:relative;width:100%;min-height:400px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s ease}
+.deckbar{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--soft);margin:10px 2px 8px;font-weight:600}
+.track{height:6px;background:#efe5df;border-radius:99px;overflow:hidden;margin:0 2px 14px}
+.track i{display:block;height:100%;background:linear-gradient(90deg,#e3aea4,var(--rose));border-radius:99px;transition:width .35s}
+.stage{perspective:1600px}
+.fc{position:relative;min-height:440px;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1);cursor:pointer}
 .fc.flip{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 20px rgba(30,30,30,.07);padding:22px;display:flex;flex-direction:column}
-.front{align-items:center;justify-content:center;text-align:center}
-.front .cat{position:absolute;top:16px;left:18px;font-size:.78rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
-.front .num{position:absolute;top:16px;right:18px;font-size:.8rem;color:var(--muted);font-weight:700}
-.front .term{font-size:2rem;font-weight:800;line-height:1.2;max-width:90%}
-.front .hint{position:absolute;bottom:16px;font-size:.82rem;color:var(--muted)}
-.back{transform:rotateY(180deg);overflow:auto;gap:10px}
-.back .bterm{font-weight:800;font-size:1.1rem;margin-bottom:2px}
-.voice{border-radius:12px;padding:10px 13px;border-left:5px solid}
-.voice .vl{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;background:var(--paper);box-shadow:var(--shadow);border:1px solid #f1e7e1;padding:24px}
+.front{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.front::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,var(--rose-mist) 0%,transparent 70%);top:-120px;right:-120px}
+.front::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,var(--l1-mist) 0%,transparent 70%);bottom:-110px;left:-100px}
+.tag{position:absolute;top:20px;left:22px;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--rose-deep);background:var(--rose-mist);padding:5px 10px;border-radius:99px;z-index:1}
+.known{position:absolute;top:20px;right:22px;font-size:.72rem;font-weight:700;color:var(--good);background:var(--good-mist);padding:5px 10px;border-radius:99px;z-index:1}
+.term{font-family:Fraunces,serif;font-weight:600;font-size:clamp(1.9rem,6vw,2.5rem);line-height:1.15;letter-spacing:-.01em;max-width:92%;position:relative;z-index:1}
+.tap{position:absolute;bottom:22px;font-size:.82rem;color:var(--soft);display:flex;gap:6px;align-items:center;z-index:1}
+.back{transform:rotateY(180deg);overflow:auto;display:flex;flex-direction:column;gap:10px}
+.back h3{font-family:Fraunces,serif;font-weight:600;font-size:1.3rem;margin:0 0 4px}
+.voice{border-radius:16px;padding:11px 14px 12px;background:var(--m);position:relative}
+.voice b{display:inline-block;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:#fff;background:var(--c);padding:3px 9px;border-radius:99px;margin-bottom:5px}
 .voice p{margin:0;font-size:.97rem}
-.v1{background:var(--l1-soft);border-color:var(--l1)} .v1 .vl{color:var(--l1)}
-.v2{background:var(--l2-soft);border-color:var(--l2)} .v2 .vl{color:var(--l2)}
-.v3{background:var(--l3-soft);border-color:var(--l3)} .v3 .vl{color:var(--l3)}
-.nav{display:flex;gap:8px}
-.btn{flex:1;border:0;border-radius:11px;padding:12px;font:inherit;font-weight:800;cursor:pointer;background:var(--card);border:1.5px solid var(--line);color:var(--ink)}
-.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn:disabled{opacity:.45;cursor:default}
-.progress{height:6px;background:#e6e1da;border-radius:99px;overflow:hidden;margin:4px 0 2px}
-.progress i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.btn{border:0;border-radius:16px;padding:14px;font-weight:700;cursor:pointer;background:var(--paper);box-shadow:var(--shadow);transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.learn{color:var(--rose-deep)}
+.btn.got{background:var(--ink);color:#fff}
+.mini{display:flex;justify-content:center;gap:18px;margin-top:12px}
+.mini button{border:0;background:none;color:var(--soft);font-weight:600;font-size:.88rem;cursor:pointer;padding:6px}
 
-/* exam */
-.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;margin-bottom:12px}
-.qh{display:flex;justify-content:space-between;gap:10px;font-size:.78rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.qt{font-weight:700;margin-bottom:10px}
-.opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;margin-bottom:7px;font:inherit;font-size:.96rem;cursor:pointer;color:var(--ink)}
-.opt:hover:not(:disabled){border-color:#bdb6ac}
+/* quiz */
+.levels{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:6px}
+.lv{border:0;text-align:left;background:var(--paper);border-radius:20px;padding:18px;box-shadow:var(--shadow);cursor:pointer;position:relative;overflow:hidden;transition:transform .15s}
+.lv:active{transform:scale(.98)}
+.lv::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--c)}
+.lv .n{font-family:Fraunces,serif;font-size:1.9rem;font-weight:600;color:var(--c);line-height:1}
+.lv .d{font-size:.86rem;color:var(--soft);margin-top:6px}
+.lv .best{font-size:.78rem;font-weight:700;margin-top:10px;color:var(--c)}
+.qhead{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 10px;font-weight:600;font-size:.88rem;color:var(--soft)}
+.qhead button{border:0;background:none;color:var(--soft);font-weight:600;cursor:pointer;padding:4px}
+.qcard{background:var(--paper);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.qtag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--m);color:var(--c);margin-bottom:12px}
+.q{font-family:Fraunces,serif;font-weight:600;font-size:1.22rem;line-height:1.35;margin:0 0 18px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:13px 14px;margin-bottom:9px;cursor:pointer;font-size:.98rem;transition:.18s}
+.opt:hover:not(:disabled){border-color:#d9c8c0;background:#fffaf8}
+.opt .k{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.8rem;background:var(--cream);color:var(--soft)}
 .opt:disabled{cursor:default}
-.opt.right{border-color:var(--l1);background:var(--l1-soft)}
-.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
-.why{display:none;font-size:.93rem;background:#f7f5f2;border-radius:10px;padding:9px 12px;margin-top:4px}
-.why.on{display:block}
-.score{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0 10px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
-.result{background:var(--card);border:2px solid var(--accent);border-radius:16px;padding:16px;margin-top:6px;display:none}
-.result.on{display:block}
-.levelnote{font-size:.92rem;color:var(--muted);margin:-4px 0 12px}
+.opt.right{border-color:var(--good);background:var(--good-mist)}
+.opt.right .k{background:var(--good);color:#fff}
+.opt.wrong{border-color:var(--miss);background:var(--miss-mist)}
+.opt.wrong .k{background:var(--miss);color:#fff}
+.why{display:none;margin-top:6px;padding:13px 15px;border-radius:14px;background:var(--cream);font-size:.94rem}
+.why.on{display:block;animation:fade .3s}
+.why strong{display:block;margin-bottom:2px}
+.next{display:none;width:100%;margin-top:14px}
+.next.on{display:block}
+.result{background:var(--paper);border-radius:var(--radius);padding:28px 22px;box-shadow:var(--shadow);text-align:center}
+.result h2{font-family:Fraunces,serif;font-weight:600;font-size:1.6rem;margin:10px 0 6px}
+.result p{color:var(--soft);margin:0 auto 18px;max-width:440px}
+.big{font-family:Fraunces,serif;font-size:3.4rem;font-weight:700;line-height:1}
+.missed{text-align:left;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.missed h4{margin:0 0 8px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.missed div{padding:10px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.missed div span{display:block;color:var(--good);font-weight:600;margin-top:3px}
+.rbtns{display:grid;gap:10px;margin-top:18px}
 
-/* blueprint */
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
-.card h2{font-size:1.15rem;margin:0 0 6px}
+/* plan */
+.card{background:var(--paper);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h2{font-family:Fraunces,serif;font-weight:600;font-size:1.25rem;margin:0 0 8px}
 .card p{margin:6px 0}
-.bar{display:flex;align-items:center;gap:10px;margin:9px 0}
-.bar .bn{flex:0 0 46%;font-size:.93rem;font-weight:700}
-.bar .bt{flex:1;height:22px;background:#eee9e2;border-radius:6px;overflow:hidden}
-.bar .bt i{display:block;height:100%;background:var(--accent)}
-.bar .bv{flex:0 0 52px;text-align:right;font-weight:800;font-size:.92rem}
-table{width:100%;border-collapse:collapse;font-size:.93rem}
-td,th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-.small{font-size:.85rem;color:var(--muted)}
-a{color:var(--accent)}
+.bar{display:flex;align-items:center;gap:10px;margin:10px 0}
+.bar .bn{flex:0 0 44%;font-size:.9rem;font-weight:600}
+.bar .bt{flex:1;height:12px;background:#f1e7e1;border-radius:99px;overflow:hidden}
+.bar .bt i{display:block;height:100%;background:linear-gradient(90deg,#e3aea4,var(--rose));border-radius:99px}
+.bar .bv{flex:0 0 46px;text-align:right;font-weight:700;font-size:.9rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:6px}
+td,th{padding:9px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--soft)}
+.small{font-size:.84rem;color:var(--soft)}
+a{color:var(--rose-deep)}
 
-:root{--l4:#a4551c;--l4-soft:#f8ebe0}
-.chip.l4.on{border-color:var(--l4);background:var(--l4-soft);color:var(--l4)}
-.v4{background:var(--l4-soft);border-color:var(--l4)} .v4 .vl{color:var(--l4)}
-.fc{min-height:560px}
-.key{display:none;margin-top:14px}.key.on{display:block}
+/* toast */
+.toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-80px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-weight:600;font-size:.9rem;z-index:30;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.toast.on{transform:translate(-50%,0)}
+.burst{position:fixed;inset:0;pointer-events:none;z-index:25;overflow:hidden}
+.burst i{position:absolute;top:-12px;width:9px;height:14px;border-radius:3px;animation:drop 1.8s ease-in forwards}
+@keyframes drop{to{transform:translateY(105vh) rotate(540deg);opacity:.2}}
+
+@media (min-width:640px){
+  .levels{grid-template-columns:repeat(4,1fr)}
+  .fc{min-height:480px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Esthetics Study Lab</h1>
-  <p class="sub">New Mexico esthetician licensing prep. Start at Level 1 and move up one level at a time.</p>
-  <div class="tabs" role="tablist">
-    <button class="tab on" data-v="cards">Flashcards</button>
-    <button class="tab" data-v="exam">Practice Quiz</button>
-    <button class="tab" data-v="plan">Test Blueprint</button>
-  </div>
+  <header class="top">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.5 3 4.5 4.5 4.5 8.5a4.5 4.5 0 0 1-9 0C7.5 7.5 10.5 6 12 3z"/><path d="M12 21v-5"/><path d="M9 18c-2 0-4-1-5-3 2-.5 4 0 5 1.5"/><path d="M15 18c2 0 4-1 5-3-2-.5-4 0-5 1.5"/></svg></div>
+    <div class="title"><h1>Esthetics Study Lab</h1><p>New Mexico licensing prep</p></div>
+  </header>
 
+  <!-- FLASHCARDS -->
   <section class="view on" id="v-cards">
-    <div class="row"><span class="label">Topic</span>
-      <button class="chip on" data-cat="all">All</button>
-      <button class="chip" data-cat="Science">Science</button>
-      <button class="chip" data-cat="Skin Care &amp; Services">Skin Care &amp; Services</button>
-      <button class="chip" data-cat="NM Law">NM Law</button>
+    <div class="hello">
+      <div class="ring"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#f1e7e1" stroke-width="7"/><circle id="ringArc" cx="32" cy="32" r="27" fill="none" stroke="#7d9d84" stroke-width="7" stroke-linecap="round" stroke-dasharray="169.6" stroke-dashoffset="169.6"/></svg><span id="ringTxt">0</span></div>
+      <div><h2 id="helloTitle">Let's get started</h2><p id="helloSub">Tap a card to flip it. Mark the ones you know.</p></div>
     </div>
-    <div class="row"><span class="label">Back shows</span>
-      <button class="chip on" data-show="all">All 4</button>
-      <button class="chip l1" data-show="1">Level 1</button>
-      <button class="chip l2" data-show="2">Level 2</button>
-      <button class="chip l3" data-show="3">Level 3</button>
-      <button class="chip l4" data-show="4">Level 4</button>
-    </div>
-    <div class="progress"><i id="fcbar"></i></div>
-    <div class="stage"><div class="fc" id="fc">
-      <div class="face front"><span class="cat" id="fcat"></span><span class="num" id="fnum"></span><div class="term" id="fterm"></div><span class="hint">Tap to flip</span></div>
-      <div class="face back" id="fback"></div>
+    <div class="lbl">Topic</div>
+    <div class="row" id="cats"></div>
+    <div class="lbl">Card back shows</div>
+    <div class="row" id="shows"></div>
+    <div class="deckbar"><span id="pos"></span><span id="left"></span></div>
+    <div class="track"><i id="bar"></i></div>
+    <div class="stage"><div class="fc" id="fc" role="button" tabindex="0" aria-label="Flashcard, tap to flip">
+      <div class="face front"><span class="tag" id="tag"></span><span class="known" id="known" hidden>Got it</span><div class="term" id="term"></div><span class="tap">Tap to flip</span></div>
+      <div class="face back" id="back"></div>
     </div></div>
-    <div class="nav">
-      <button class="btn" id="prev">Back</button>
-      <button class="btn" id="shuf">Shuffle</button>
-      <button class="btn pri" id="next">Next</button>
+    <div class="acts">
+      <button class="btn learn" id="learn">Still learning</button>
+      <button class="btn got" id="got">Got it</button>
+    </div>
+    <div class="mini">
+      <button id="prev">Back</button>
+      <button id="shuf">Shuffle</button>
+      <button id="focus">Show only "still learning"</button>
     </div>
   </section>
 
-  <section class="view" id="v-exam">
-    <div class="row"><span class="label">Level</span>
-      <button class="chip l1 on" data-lv="1">Level 1</button>
-      <button class="chip l2" data-lv="2">Level 2</button>
-      <button class="chip l3" data-lv="3">Level 3</button>
-      <button class="chip l4" data-lv="4">Level 4</button>
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz">
+    <div id="quizHome">
+      <div class="hello"><div><h2>Practice quizzes</h2><p>25 questions each, weighted like the real exam. Score 70% or better, then move up a level.</p></div></div>
+      <div class="levels" id="levels"></div>
     </div>
-    <p class="levelnote" id="lvnote"></p>
-    <div class="score"><span id="scoretxt"></span><button class="chip" id="reset">Start over</button></div>
-    <div id="qs"></div>
-    <div class="result" id="result"></div>
+    <div id="quizRun" hidden>
+      <div class="qhead"><button id="quit">← Levels</button><span id="qpos"></span><span id="qscore"></span></div>
+      <div class="track"><i id="qbar"></i></div>
+      <div class="qcard" id="qcard"></div>
+    </div>
+    <div id="quizDone" hidden></div>
   </section>
 
+  <!-- PLAN -->
   <section class="view" id="v-plan">
     <div class="card">
       <h2>What's on the New Mexico license exams</h2>
@@ -188,82 +252,104 @@ a{color:var(--accent)}
     </div>
   </section>
 </div>
+
+<nav class="nav" aria-label="Sections">
+  <button class="on" data-v="cards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="14" rx="3"/><path d="M7 3h11a3 3 0 0 1 3 3v11"/></svg>Cards</button>
+  <button data-v="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Quiz</button>
+  <button data-v="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15v-4"/><path d="M12 15V8"/><path d="M16 15v-6"/></svg>Exam</button>
+</nav>
+<div class="toast" id="toast"></div>
+<div class="burst" id="burst"></div>
+
 <script>
 const CARDS=[["Science","Sanitation","Cleaning with soap and water. It gets the dirt and some germs off. It is the first step, not the last.","The lowest level of infection control. It removes visible dirt and lowers the number of germs, but it does not kill all of them.","The first level of infection control. Washing with soap or detergent and water removes debris and reduces germs so that a disinfectant can work afterward.","Level one of infection control. Clean with soap or detergent and water before you disinfect, because disinfectant cannot work through dirt and oil."],["Science","Disinfection","Using a strong germ-killing liquid on tools after you clean them. It kills almost all germs.","The middle level. An EPA-registered disinfectant kills most bacteria, viruses and fungi on hard, nonporous tools. It does not kill bacterial spores.","The second level of infection control. A chemical disinfectant registered with the EPA destroys most pathogens on nonporous surfaces, though bacterial spores survive. Tools must be cleaned first.","The salon standard for tools that touch clients. Clean first, then keep the tool wet with an EPA-registered disinfectant for the full contact time on the label. Never used on skin."],["Science","Sterilization","Killing every single germ, even the toughest ones. Doctors' offices do this.","The highest level. It destroys all microbes, including bacterial spores, usually with an autoclave that uses steam and pressure.","The highest level of infection control. It destroys every microorganism, including spores, most often with an autoclave. It is required for tools that puncture the skin.","Kills all microbial life. Needed for anything that breaks the skin, like a lancet. Most salons use single-use disposables for those instead and throw them away."],["Science","Contact Time","How long the germ-killing liquid has to stay wet on something before it works.","The amount of time a disinfectant must stay wet on a surface to kill the germs listed on its label.","The period a surface must stay visibly wet with disinfectant for the product to work as its label claims. A shorter time means the tool is not disinfected.","The wet time the label requires. Wiping a tool dry early means it is not disinfected, and an inspector can cite you for it."],["Science","Pathogenic Bacteria","Tiny living things you can't see. Most are harmless. The 'pathogenic' kind makes people sick.","One-celled microorganisms. Nonpathogenic bacteria are harmless or helpful. Pathogenic bacteria cause disease.","Single-celled organisms that cause disease when they enter the body. They are a minority among bacteria; nonpathogenic types are harmless or useful.","Most bacteria are harmless. The disease-causing kind are the reason every infection control rule exists."],["Science","Virus","A tiny germ that can only grow inside living cells. Cold sores come from a virus.","A germ smaller than bacteria that can only multiply inside a host's cells. Examples: herpes simplex (cold sores), hepatitis B and HIV.","An infectious particle that reproduces only by taking over a host's cells. Viral infections such as herpes simplex and hepatitis are not cured by antibiotics.","Cannot live or multiply without a host. Antibiotics do not work on viruses. An active cold sore means no service in that area."],["Science","Fungi (Tinea)","Germs like mold and yeast. Ringworm is a fungus, not a worm.","Molds, mildews and yeasts. Tinea, also called ringworm, is a contagious fungal skin infection.","Organisms such as molds and yeasts. Tinea is a contagious fungal infection of the skin that forms itchy, ring-shaped patches, and it is a reason to refuse service on that area.","Tinea shows up as a red, scaly ring. It is contagious, so do not service the area. Refer the client to a doctor."],["Science","Standard Precautions","Treat everyone's blood like it could have germs. Every client, every time.","Guidelines that say to treat all blood and body fluids as if they could be infectious, and to wear gloves and other protection.","Infection control guidelines that require treating all human blood and certain body fluids as potentially infectious, using gloves and protective equipment with every client.","Assume any client could carry a bloodborne disease. Gloves, disposables and the blood exposure steps every time. Never judge who 'looks sick.'"],["Science","Blood Exposure Procedure","If a client gets cut: stop, put on gloves, clean it, cover it, and bag anything with blood on it.","Stop the service, put on gloves, clean the area with antiseptic, cover it with a bandage, double-bag blood-soiled items, then disinfect tools and surfaces.","The set of steps followed when blood appears during a service: stop, put on gloves, clean and cover the wound, double-bag contaminated items, and disinfect tools and surfaces before continuing.","Stop. Glove up. Clean and apply antiseptic. Bandage. Double-bag the waste. Disinfect tools and the station. Remove gloves and wash hands. It is a full scored section of the practical exam."],["Science","Safety Data Sheet (SDS)","A paper that tells you how a product could hurt you and what to do if it does.","A document from the manufacturer listing a product's ingredients, hazards, safe handling, storage and first aid.","A standardized document the manufacturer supplies for each chemical product. It explains hazards, safe handling and storage, protective equipment and emergency first aid.","Every chemical product in the salon needs one. It covers hazards, protective gear, storage and first aid. Know where your salon keeps them."],["Science","Epidermis","The top layer of your skin. It is the part you can see and touch.","The outermost layer of skin. It has no blood vessels and renews itself as new cells move up from the bottom.","The thin outer layer of the skin. It contains no blood vessels and is made of several layers of cells that form at the bottom and move upward until they shed.","The outer layer, with no blood vessels. New cells form in the basal layer at the bottom and rise to the surface, where they shed."],["Science","Stratum Corneum","The very top of the top skin layer. It is made of flat, dead cells that flake off.","The outermost layer of the epidermis. Dead cells filled with keratin that protect the body and shed all the time.","The top layer of the epidermis, made of flattened, keratin-filled dead cells. It forms the skin's protective barrier and is the layer that exfoliation treatments remove.","This is the skin's barrier, and it is what exfoliation removes. Over-exfoliating damages it and makes skin sensitive."],["Science","Dermis","The thick layer under the top skin. It has blood, nerves, oil glands and hair roots.","The 'true skin' under the epidermis. It holds blood vessels, nerves, sweat and oil glands, hair follicles, collagen and elastin.","The thicker layer beneath the epidermis. It supplies the skin with blood and nerves and contains collagen for strength and elastin for flexibility.","The support layer. Collagen keeps skin firm and elastin lets it bounce back. Sun and age break both down, which causes wrinkles."],["Science","Subcutaneous Layer","The fat layer under the skin. It keeps you warm and works like a cushion.","Also called the hypodermis. Fatty tissue under the dermis that cushions, insulates and stores energy.","The layer of fatty tissue below the dermis, also called the hypodermis. It cushions the body, holds in heat and stores energy.","The fat layer under the dermis. It gets thinner with age, which adds to sagging."],["Science","Melanin","The coloring in your skin. More melanin means darker skin, and it helps block the sun.","The pigment made by melanocytes that gives skin and hair color and protects against UV rays.","Pigment produced by cells called melanocytes in the lowest layer of the epidermis. It determines skin color and absorbs UV radiation to protect the cells.","Made in the basal layer. Too much in one spot is hyperpigmentation and too little is hypopigmentation. Skin with more melanin darkens more easily after irritation."],["Science","Sebaceous Gland","Tiny glands in the skin that make oil.","Oil glands attached to hair follicles. They release sebum, which keeps skin and hair soft.","Oil glands connected to hair follicles. They secrete sebum, which lubricates the skin; too much sebum leads to oily skin and clogged follicles.","They make sebum. Overactive glands mean oily skin and clogged pores, mostly in the T-zone."],["Science","Comedone","A clogged pore. Blackheads and whiteheads are both comedones.","A hair follicle plugged with oil and dead cells. An open comedone is a blackhead. A closed comedone is a whitehead.","A follicle blocked by sebum and dead cells. It is open (a blackhead) when the plug reaches the surface and oxidizes, and closed (a whitehead) when skin covers it.","A blackhead is dark because the oil oxidizes in air, not because of dirt. Extract only on softened skin, wearing gloves."],["Science","Papule vs. Pustule","A papule is a small red bump. A pustule is a bump with pus in it.","Both are primary lesions. A papule is a small raised bump with no fluid. A pustule is raised and contains pus.","Two primary lesions seen in acne. A papule is a solid, raised, inflamed bump; a pustule is a similar bump that contains pus.","Know the main lesions: macule is a flat spot like a freckle, papule is a bump with no pus, pustule is a bump with pus, and vesicle is a small blister of clear fluid."],["Science","Rosacea","A skin problem that makes the cheeks and nose red and easy to irritate.","A long-lasting inflammatory condition with redness, visible blood vessels and sometimes bumps in the center of the face.","A chronic inflammatory condition of the central face marked by flushing, visible capillaries and sometimes bumps. Heat and stimulation make it worse, so treatments must be gentle.","Triggered by heat, sun, spicy food and alcohol. Skip heat, steam and harsh scrubs. You can soothe the skin, but only a doctor diagnoses and treats it."],["Science","ABCDEs of Melanoma","A checklist for moles that could be dangerous: shape, edges, color, size and change.","A guide to spotting melanoma: Asymmetry, Border, Color, Diameter, Evolving.","A screening guide for melanoma: Asymmetry, irregular Border, varied Color, Diameter over 6 mm, and Evolving. An esthetician who notices these signs refers the client to a physician.","Uneven shape, ragged border, more than one color, wider than a pencil eraser (6 mm), or changing over time. Never diagnose. Refer to a dermatologist."],["Science","Anagen Phase","The growing stage of hair.","The active growth phase of the hair cycle. It is the best time to remove hair because the hair is still attached at the root.","The first and longest stage of the hair growth cycle, when the hair is actively growing and anchored in the follicle. Hair removed in this stage takes longest to return.","Growth phase, when hair removal works best. The cycle goes anagen (growing), then catagen (changing), then telogen (resting and shedding)."],["Science","pH Scale","A number from 0 to 14 that tells how sour (acid) or soapy (alkaline) something is. 7 is in the middle.","Measures acidity and alkalinity. Below 7 is acidic, 7 is neutral, above 7 is alkaline. Healthy skin is slightly acidic, about 4.5 to 5.5.","A scale from 0 to 14 that measures how acidic or alkaline a substance is. Seven is neutral; the skin's surface normally measures about 4.5 to 5.5, which is mildly acidic.","Skin works best around 4.5 to 5.5. Highly alkaline products, like harsh bar soap, strip the skin and leave it tight and irritated."],["Science","Acid Mantle","A thin, slightly sour layer on top of the skin that protects it from germs.","A protective film of oil and sweat on the skin's surface. It is slightly acidic and helps keep bacteria out.","The thin, slightly acidic film of sebum and sweat on the skin's surface. It slows bacterial growth and helps the skin hold moisture.","A film of sebum and sweat that keeps bacteria down and moisture in. Over-cleansing destroys it."],["Science","Emulsion","Oil and water mixed together so they stay mixed, like lotion.","A mix of two liquids that normally don't blend, like oil and water, held together by an emulsifier.","A stable blend of oil and water made possible by an emulsifier. Most creams and lotions are emulsions, either oil-in-water or water-in-oil.","Oil-in-water is lighter, like lotion. Water-in-oil is heavier, like cold cream. Emulsifiers keep the mixture from separating."],["Skin Care & Services","Client Consultation","Talking with the client before the service to learn about their skin and health.","The conversation and intake form before a service: health history, medications, allergies, skin concerns and goals.","The discussion and written intake completed before a service. It gathers health history, medications, allergies and goals so the esthetician can choose a safe treatment.","Every service starts here. Review the intake form, ask about medications and recent treatments, check for contraindications, and write it all down."],["Skin Care & Services","Draping","Covering the client with a towel and head wrap to keep them clean and comfortable.","Protecting the client's hair and clothes with a head wrap and body drape before a service.","Covering the client's hair and clothing with clean linens before a service. It protects the client and keeps the work area sanitary.","The head drape keeps hair off the face, and the body drape protects clothes and privacy. Examiners check it as part of client protection."],["Skin Care & Services","Contraindication","A reason you should NOT do a treatment on someone.","A condition that means a service should not be done because it could harm the client.","Any condition, medication or recent treatment that makes a service unsafe for a particular client. The esthetician must change or refuse the service.","Stop and don't proceed if you see a contagious condition, open sores, a sunburn, recent isotretinoin (Accutane) use before waxing or peels, or a pacemaker before electrical treatments. When in doubt, ask for a doctor's release."],["Skin Care & Services","Fitzpatrick Scale","A chart from I to VI that sorts skin by how easily it burns or tans.","Classifies skin into Types I to VI by how it reacts to the sun, from 'always burns' (I) to 'never burns' (VI).","A six-type classification of skin based on its response to UV exposure. It helps predict the risk of burning and of pigment changes after treatment.","Higher types have more risk of dark spots after peels or irritation, so go gentler on them."],["Skin Care & Services","Skin Type vs. Skin Condition","Skin type is what you were born with. Skin condition is how your skin is acting right now.","Skin type (dry, normal, combination, oily) is genetic. Skin condition (dehydrated, sensitive, acne-prone) can change over time.","Skin type is inherited and based mainly on oil production. Skin conditions, such as dehydration or sensitivity, develop from outside and internal factors and can be improved.","You can't change the type, but you treat the condition. Analysis under a magnifying lamp decides the treatment plan."],["Skin Care & Services","Wood's Lamp","A special purple light that shows things about the skin you can't see in normal light.","A filtered UV light used in skin analysis. Different skin conditions glow different colors under it.","A filtered ultraviolet lamp used in a darkened room during skin analysis. Conditions such as pigmentation, oiliness and dehydration show up as different colors.","Used in a dark room with the client's eyes covered. Shows hidden pigmentation, dehydration, oil and product buildup."],["Skin Care & Services","Mechanical vs. Chemical Exfoliation","Getting dead skin off the top. You can scrub it off, or use a product that loosens it.","Mechanical exfoliation uses friction (scrubs, brushes, microdermabrasion). Chemical exfoliation uses acids or enzymes.","Two ways to remove dead cells from the stratum corneum. Mechanical methods physically rub or scrape them away; chemical methods dissolve the bonds that hold them together.","Mechanical means scrubs, microdermabrasion and dermaplaning. Chemical means AHAs, BHAs and enzymes. Never exfoliate over infection or sunburn, or on a client using isotretinoin."],["Skin Care & Services","AHA vs. BHA","Two kinds of skin acids. AHA works on the surface. BHA gets down into oily pores.","AHAs (glycolic, lactic) dissolve in water and work on the surface. BHA (salicylic) dissolves in oil and gets into pores, so it helps acne.","Two families of exfoliating acids. Alpha hydroxy acids are water-soluble and smooth the surface; beta hydroxy acid (salicylic) is oil-soluble and clears the inside of the pore.","AHA for dullness and aging skin. BHA for oily and acne-prone skin. Salicylic acid is related to aspirin, so ask about aspirin allergies first."],["Skin Care & Services","Effleurage","Slow, gentle stroking in massage. Used to start and end the massage.","A light, gliding massage stroke used to begin, connect and end a massage and relax the client.","A soft, continuous stroking movement made with the fingers or palms. It soothes the client and is used to begin and end a facial massage.","The other strokes are petrissage (kneading), tapotement (tapping), friction and vibration. Effleurage opens and closes."],["Skin Care & Services","Petrissage","Kneading the skin, like squeezing dough.","A kneading movement that lifts and squeezes the tissue to boost circulation.","A kneading movement that lifts, rolls and squeezes the tissue. It stimulates circulation and the deeper layers of the skin.","A deeper, stimulating stroke. Avoid it on sensitive or rosacea skin."],["Skin Care & Services","Tapotement","Light, quick tapping with the fingertips.","A fast tapping or light slapping movement. It is the most stimulating massage stroke.","A rapid tapping movement, also called percussion. It is the most stimulating massage technique and is used sparingly.","The most stimulating movement there is. Not for sensitive or reactive skin."],["Skin Care & Services","High Frequency","A machine with a glass tube that glows and helps kill acne germs.","An electrical device that uses a glass electrode. It warms the skin and kills germs. In the direct method it touches the skin. In the indirect method the client holds it.","A device that sends a rapidly alternating current through a glass electrode. It produces heat and has a germ-killing effect, which makes it useful after extractions.","Direct is antibacterial and is used after extractions. Indirect means the client holds the electrode while you massage. Avoid with pacemakers, metal implants, pregnancy or epilepsy."],["Skin Care & Services","Galvanic Current","A machine that uses a small, steady electric current to clean out pores or push products in.","A direct current with a negative and a positive pole. Desincrustation softens oil in pores, and iontophoresis pushes products into the skin.","A constant direct current used for two treatments: desincrustation, which softens sebum in the follicles, and iontophoresis, which carries water-soluble products into the skin.","The negative pole is alkaline: it softens sebum (desincrustation). The positive pole is acidic: it firms and soothes. Same no-go list as other electrical treatments."],["Skin Care & Services","Microdermabrasion","A machine that sands off dead skin with tiny crystals or a rough tip, then vacuums it up.","Mechanical exfoliation using crystals or a diamond tip plus suction to remove dead surface cells.","A form of mechanical exfoliation that uses crystals or a diamond tip with vacuum suction to remove surface cells. It is not used on inflamed or broken skin.","A New Mexico practical add-on, done on the forehead in 10 minutes. Hold the skin taut, use even passes, and avoid pustules and the eye area."],["Skin Care & Services","Mask Types","Something you spread on the face and leave on. Clay masks soak up oil. Cream masks add moisture.","Clay or mud absorbs oil, gel soothes and hydrates, cream moisturizes, rubberized seals in serum, and thermal (paraffin) warms.","Masks are selected by skin need: clay draws out oil, cream adds moisture, gel calms and hydrates, modeling (rubberized) masks seal in products, and paraffin holds in heat.","Choose by skin: clay for oily, cream for dry, gel for sensitive or red, rubberized to lock in serums, and paraffin for warmth. Keep paraffin away from rosacea."],["Skin Care & Services","Soft Wax vs. Hard Wax","Soft wax needs a cloth strip to pull it off. Hard wax hardens, and you pull it off by itself.","Soft wax goes on thin and comes off with a strip. Hard wax goes on thicker, hardens, and comes off without a strip, so it is gentler on the face.","Two depilatory waxes. Soft wax is spread thinly and removed with a strip; hard wax sets on the skin and is lifted off without one, which suits sensitive areas.","Soft wax goes on in the direction of hair growth and comes off against it, quickly, with the skin held taut. Hard wax grips hair, not skin. Never wax over retinoids, Accutane or a recent peel."],["Skin Care & Services","Double-Dipping","Putting a used stick back into the wax pot. Never do it.","Reusing an applicator in the wax pot, which contaminates the wax.","Placing a used applicator back into a product such as wax. It transfers bacteria into the container and violates infection control rules.","One stick, one dip. Double-dipping spreads bacteria to every client after you, and it is a sanitation violation."],["Skin Care & Services","Color Correcting","Colors across from each other on the color wheel cancel each other out. Green hides red.","Complementary colors sit opposite each other on the color wheel and neutralize each other. Green covers redness, and peach covers blue-purple circles.","Using complementary colors, which sit opposite each other on the color wheel, to neutralize discoloration before foundation. Green offsets red; peach offsets blue.","Green over redness, yellow over purple, peach or orange over blue dark circles, and lavender over sallow skin. Correct first, then apply foundation."],["Skin Care & Services","Bracing","Resting your hand on the client's face so you stay steady near the eyes.","Supporting your working hand on the client's face for control when working near the eyes or lips.","Steadying the working hand against the client's face. It gives control and prevents injury when applying products near the eyes and mouth.","Keeps your hand steady during liner, lip, brow and lash work. It is checked for safety on the practical exam."],["Skin Care & Services","Strip Lash Application","Gluing a strip of fake lashes onto the client's lash line.","Applying a full band of artificial lashes with adhesive right along the natural lash line.","Attaching a band of artificial lashes along the natural lash line with adhesive. The band is measured and trimmed to fit before it is applied.","Trim the band to fit the eye, let the glue get tacky, then set it at the lash line from the center out. A New Mexico practical add-on: both eyes in 10 minutes."],["NM Law","Scope of Practice","The list of things your license lets you do, and the things it doesn't.","The services a New Mexico esthetician may legally do, such as facials, makeup, lash and brow tinting, and most hair removal.","The services a license legally permits. New Mexico estheticians perform skin care, makeup, lash and brow services and non-invasive hair removal, but nothing invasive or medical.","Facials, skin treatments, light therapy, high frequency, makeup, lash extensions, lash and brow tint, and hair removal except electrolysis, invasive methods and shaving. You can't call yourself a 'medical esthetician.'"],["NM Law","600 Hours","The number of school hours you need before you can take the license test.","New Mexico requires 600 hours at a licensed school: 125 theory, 75 sanitation, 350 facials and 50 business.","The training New Mexico requires before the licensing exams. The hours are divided among theory, infection control, facials and salon business.","600 hours finished within the past 24 months, then three exams. Theory is now 125 hours after the January 2026 rule change."],["NM Law","Passing Score of 70","You need at least a 70 on each of the three tests to pass.","Each part (NIC theory, NIC practical and NM state law) needs a scaled score of 70 or higher.","The minimum scaled score New Mexico requires on each of the three licensing exams. Each exam is scored separately.","Lowered from 75 to 70 in January 2026. Pass each part separately; passing one doesn't make up for another."],["NM Law","Board of Barbers and Cosmetologists","The state group that gives out esthetician licenses in New Mexico.","The New Mexico board, part of the Regulation and Licensing Department, that licenses estheticians and enforces the rules in 16.34 NMAC.","The state agency that licenses and regulates estheticians. It writes the rules in 16.34 NMAC, inspects establishments and can discipline licensees.","Issues and renews licenses, inspects salons, and disciplines violations. Its rules live in Title 16, Chapter 34 of the New Mexico Administrative Code."]];
 const EXAMS={"1":{"note":"Short, clear questions to build the basics.","qs":[["What do you call cleaning something with soap and water?",["Exfoliation","Sanitation","Sterilization","Disinfection"],1,"Sanitation is the first, basic cleaning step.","I"],["Which one kills EVERY germ, even the toughest ones?",["Sterilization","Sanitation","Rinsing","Disinfection"],0,"Sterilization kills all germs, even spores.","I"],["A germ that can only grow inside living cells is a:",["Virus","Fungus","Parasite","Bacteria"],0,"Viruses need a living cell to grow.","I"],["Ringworm (tinea) is caused by a:",["Fungus","Worm","Bacteria","Virus"],0,"Ringworm is a fungus, not a worm.","I"],["A client gets a small cut. What do you do FIRST?",["Put makeup on it","Keep going","Stop the service","Ask her to leave"],2,"Always stop the service first.","I"],["What is the top layer of the skin called?",["Muscle","Dermis","Epidermis","Subcutaneous layer"],2,"The epidermis is the top layer you can see.","I"],["What gives skin its color?",["Melanin","Sweat","Sebum","Collagen"],0,"Melanin is the color pigment in skin.","I"],["Glands in the skin that make oil are:",["Sebaceous glands","Nerves","Hair roots","Sweat glands"],0,"Sebaceous glands make oil (sebum).","I"],["A blackhead is also called an:",["Freckle","Open comedone","Pustule","Closed comedone"],1,"A blackhead is an open comedone.","I"],["On the pH scale, which number is neutral (in the middle)?",["7","14","4","0"],0,"7 is neutral.","I"],["The paper that tells you how a product could hurt you is a:",["Receipt","Safety Data Sheet","License","Intake form"],1,"The Safety Data Sheet (SDS) lists the dangers and first aid.","I"],["Which layer of skin is right under the epidermis?",["Scalp","Muscle","Bone","Dermis"],3,"The dermis sits right under the epidermis.","I"],["A bump on the skin with pus in it is a:",["Pustule","Freckle","Papule","Mole"],0,"A pustule has pus. A papule does not.","I"],["The growing stage of hair is called:",["Keratin","Anagen","Telogen","Catagen"],1,"Anagen is the growing stage.","I"],["Talking with a client about her skin and health before a service is a:",["Draping","Massage","Consultation","Mask"],2,"The consultation comes before every service.","II"],["Covering the client with a towel and head wrap is called:",["Waxing","Draping","Bracing","Toning"],1,"Draping protects the client.","II"],["A reason you should NOT do a service is a:",["Protocol","Consultation","Contraindication","Treatment"],2,"A contraindication means do not do the service.","II"],["Which mask is best for soaking up oil?",["Gel mask","Paraffin mask","Cream mask","Clay mask"],3,"Clay soaks up oil.","II"],["Slow, gliding massage strokes are called:",["Friction","Tapotement","Petrissage","Effleurage"],3,"Effleurage is slow, gliding stroking.","II"],["Which wax hardens and comes off without a strip?",["Sugar water","Lotion","Soft wax","Hard wax"],3,"Hard wax comes off by itself.","II"],["Putting a used stick back into the wax pot is called:",["Draping","Double-dipping","Tapping","Bracing"],1,"Double-dipping spreads germs. Never do it.","II"],["Which color hides redness on the skin?",["Blue","Red","Pink","Green"],3,"Green is across from red on the color wheel.","II"],["Gluing a strip of fake lashes along the lash line is:",["Lash tinting","A lash perm","Strip lash application","Brow waxing"],2,"That's strip lash application, one of New Mexico's practical add-ons.","II"],["Light, quick tapping in massage is called:",["Effleurage","Draping","Tapotement","Petrissage"],2,"Tapotement means tapping.","II"],["Which mask adds moisture to dry skin?",["Mud mask","Charcoal mask","Clay mask","Cream mask"],3,"Cream masks add moisture. Clay, mud and charcoal soak up oil.","II"]]},"2":{"note":"Exam-style questions using the real vocabulary.","qs":[["Which level of infection control kills most germs on hard tools but NOT bacterial spores?",["Antisepsis","Disinfection","Sanitation","Sterilization"],1,"Disinfection kills most germs but not spores. Only sterilization kills spores.","I"],["The time a disinfectant must stay wet on a surface to work is called:",["Contact time","Processing time","Cure time","Drying time"],0,"Contact time is printed on the label.","I"],["Bacteria that cause disease are called:",["Beneficial","Nonpathogenic","Pathogenic","Saprophytic"],2,"Pathogenic means disease-causing.","I"],["Treating all blood and body fluids as if they are infectious is called:",["Quarantine","Sanitation","First aid","Standard Precautions"],3,"Standard Precautions apply to every client.","I"],["Which skin layer contains blood vessels, nerves and collagen?",["Epidermis","Dermis","Basal layer","Stratum corneum"],1,"The dermis is the 'true skin' with vessels, nerves and collagen.","I"],["The outermost layer of the epidermis, made of dead cells, is the:",["Stratum basale","Stratum granulosum","Stratum spinosum","Stratum corneum"],3,"The stratum corneum is the dead, protective top layer.","I"],["A small raised bump with NO pus is a:",["Vesicle","Macule","Papule","Pustule"],2,"A papule has no pus. A pustule does.","I"],["Long-lasting redness on the cheeks and nose with visible blood vessels is most likely:",["Rosacea","Eczema","Acne","Psoriasis"],0,"Rosacea centers on the cheeks and nose.","I"],["The active growth phase of hair is:",["Catagen","Dormant","Telogen","Anagen"],3,"Anagen is growth, catagen is change, and telogen is rest.","I"],["Healthy skin has a pH of about:",["4.5 to 5.5","9 to 10","7","2"],0,"Skin is slightly acidic.","I"],["The scale that classifies skin by how it reacts to the sun is the:",["Glogau scale","Fitzpatrick scale","pH scale","Wood's scale"],1,"Fitzpatrick Types I to VI.","I"],["The cells in the epidermis that produce pigment are called:",["Sebocytes","Keratinocytes","Melanocytes","Fibroblasts"],2,"Melanocytes make melanin.","I"],["A closed comedone is commonly called a:",["Whitehead","Cyst","Blackhead","Papule"],0,"Closed means whitehead. Open means blackhead.","I"],["The document that lists a chemical product's hazards and first aid measures is the:",["Product invoice","Safety Data Sheet","Intake form","Service record"],1,"The SDS comes from the manufacturer for every chemical product.","I"],["Which acid is oil-soluble and best for acne-prone skin?",["Lactic acid","Hyaluronic acid","Glycolic acid","Salicylic acid"],3,"Salicylic acid (BHA) gets into oily pores.","II"],["Which of these is MECHANICAL exfoliation?",["Enzyme peel","Microdermabrasion","Glycolic peel","Salicylic toner"],1,"Microdermabrasion works by friction. The others are chemical.","II"],["The most stimulating massage movement is:",["Petrissage","Vibration","Tapotement","Effleurage"],2,"Tapotement (tapping) is the most stimulating.","II"],["The direct method of high frequency is mainly used to:",["Remove hair","Tint lashes","Push products deep into skin","Kill bacteria on acne-prone skin"],3,"Direct high frequency kills germs.","II"],["Galvanic desincrustation uses which pole to soften oil in pores?",["Positive","Neutral","Negative","Either one"],2,"The negative pole is alkaline and softens sebum.","II"],["Soft wax is removed:",["Slowly","Straight up from the skin","In the direction of hair growth","Opposite the direction of hair growth"],3,"Remove against the growth, quickly, with the skin held taut.","II"],["To correct blue or purple circles under the eyes, use a:",["Peach or orange corrector","Lavender corrector","Green corrector","White highlighter"],0,"Peach and orange cancel out blue tones.","II"],["Resting your hand on the client's face for control near the eyes is called:",["Bracing","Blending","Tapping","Draping"],0,"Bracing keeps your hand steady and the client safe.","II"],["Which of these is a contraindication for waxing?",["Dry hands","Recent isotretinoin (Accutane) use","Normal hair growth","Oily skin"],1,"Isotretinoin makes skin fragile, so waxing can tear it.","II"],["A filtered ultraviolet light used for skin analysis is the:",["Wood's lamp","Infrared lamp","Magnifying lamp","LED panel"],0,"The Wood's lamp shows conditions that normal light hides.","II"],["Which mask is best suited to oily skin?",["Cream mask","Oil-based mask","Clay mask","Paraffin mask"],2,"Clay absorbs oil.","II"]]},"3":{"note":"Questions that ask why and how.","qs":[["Why must a tool be cleaned before it is disinfected?",["Debris and oil keep the disinfectant from reaching the surface","Disinfectant only works on dry debris","Cleaning sterilizes the tool","Cleaning replaces disinfection"],0,"Disinfectant can't work through dirt and oil.","I"],["An autoclave is used for which level of infection control?",["Sanitation","Antisepsis","Disinfection","Sterilization"],3,"An autoclave sterilizes with steam under pressure.","I"],["Which statement about viruses is correct?",["They reproduce only inside a host's cells","They are killed by antibiotics","They are larger than bacteria","They are a type of fungus"],0,"A virus needs a host cell to multiply, and antibiotics don't affect it.","I"],["Which of these is a contagious fungal infection?",["Psoriasis","Eczema","Rosacea","Tinea"],3,"Tinea (ringworm) is fungal and contagious. The others are not contagious.","I"],["During a blood exposure incident, contaminated disposable items should be:",["Placed in the disinfectant jar","Rinsed and reused","Double-bagged and thrown away","Left on the station until closing"],2,"Blood-soiled disposables are double-bagged and discarded.","I"],["Where are new skin cells produced?",["In the subcutaneous layer","In the stratum corneum","In the sebaceous glands","In the basal layer of the epidermis"],3,"Cells form in the basal layer and move up to the surface.","I"],["Collagen and elastin are found mainly in the:",["Hair shaft","Epidermis","Dermis","Stratum corneum"],2,"The dermis holds the collagen and elastin that keep skin firm and flexible.","I"],["Too much melanin in one area of the skin is called:",["Dehydration","Keratosis","Hypopigmentation","Hyperpigmentation"],3,"Hyper means too much. Hypo means too little.","I"],["A flat, discolored spot on the skin, such as a freckle, is a:",["Vesicle","Pustule","Macule","Papule"],2,"A macule is flat. The other three are raised.","I"],["Which skin cancer is the most serious because it can spread quickly?",["Keratoma","Melanoma","Basal cell carcinoma","Squamous cell carcinoma"],1,"Melanoma is the most dangerous. A keratoma is a callus, not a cancer.","I"],["Hair that is resting and ready to shed is in which phase?",["Anagen","Catagen","Telogen","Mitosis"],2,"Telogen is the resting phase.","I"],["A product with a pH of 9 is:",["Neutral","Alkaline","The same pH as healthy skin","Acidic"],1,"Anything above 7 is alkaline.","I"],["The acid mantle is made of:",["Blood and lymph","Collagen and elastin","Sebum and sweat","Melanin and keratin"],2,"Oil and sweat form the skin's protective film.","I"],["An emulsifier is an ingredient that:",["Kills bacteria on tools","Keeps oil and water blended together","Removes dead skin cells","Adds color to makeup"],1,"Emulsifiers hold oil and water together in creams and lotions.","I"],["The main purpose of the client intake form is to:",["Identify health conditions and medications that affect the service","Advertise retail products","Replace the skin analysis","Record how the client will pay"],0,"The form reveals contraindications before you start.","II"],["Dehydrated skin is best described as a:",["Skin type that lacks oil","Primary lesion","Skin condition that lacks water","Contagious disease"],2,"Dehydration is a condition (lacks water). Dry is a type (lacks oil).","II"],["A client with Fitzpatrick Type I skin:",["Always burns and never tans","Never burns","Tans easily and rarely burns","Has deeply pigmented skin"],0,"Type I is the fairest and most sun-sensitive.","II"],["Enzyme peels and alpha hydroxy acids are examples of:",["Desincrustation","Extraction","Mechanical exfoliation","Chemical exfoliation"],3,"They dissolve dead cells instead of scrubbing them off.","II"],["Which massage movement is a kneading motion?",["Petrissage","Vibration","Effleurage","Tapotement"],0,"Petrissage kneads. Effleurage glides and tapotement taps.","II"],["Iontophoresis uses galvanic current to:",["Remove unwanted hair","Move water-soluble products into the skin","Dry out pustules with heat","Exfoliate with crystals"],1,"Iontophoresis carries water-soluble products into the skin.","II"],["Why should steam and heat be avoided on a client with rosacea?",["Heat stops oil production","Heat closes the pores","Steam removes too much melanin","Heat widens blood vessels and increases redness"],3,"Heat is a rosacea trigger.","II"],["A rubberized (modeling) mask is used mainly to:",["Seal in serums and products placed under it","Exfoliate dead cells","Remove facial hair","Absorb oil from the pores"],0,"The mask forms a seal that holds products against the skin.","II"],["Why is hard wax often chosen for the face?",["It never needs a temperature test","It grips the hair more than the skin, so it is gentler","It is removed with a cloth strip","It is applied cold"],1,"Hard wax holds the hair, not the skin. Always test wax temperature.","II"],["To neutralize sallow, yellow tones in the skin, use a corrector that is:",["Yellow","Lavender","Orange","Green"],1,"Lavender sits opposite yellow on the color wheel.","II"],["Which product is applied last at the end of a daytime facial?",["Sunscreen","Exfoliant","Massage cream","Toner"],0,"Sun protection is the final step.","II"]]},"4":{"note":"Real-world scenarios like the ones on the state exam.","qs":[["After a facial, an esthetician sprays her extractor with disinfectant and wipes it dry right away. What did she do wrong?",["She didn't clean it first or leave it wet for the label's contact time.","Nothing. That's correct.","Extractors have to be thrown away after each use.","She should have rinsed it in water only."],0,"Clean first, then keep the tool wet for the full contact time.","I"],["Which item has to be single-use or sterilized because it breaks the skin?",["Comedone extractor","Lancet","Tweezers","Fan brush"],1,"A lancet pierces the skin.","I"],["A client arrives with a cluster of small fluid-filled blisters on her lip. What's the best action?",["Use high frequency to dry them","Avoid the area and refer her, since it may be contagious","Extract them gently","Cover them with concealer"],1,"It may be herpes simplex, which is contagious.","I"],["During waxing, a client's skin bleeds slightly. You stop and put on gloves. What comes next?",["Wipe it with a towel and keep going","Finish the wax quickly","Clean the area with antiseptic and cover it with a bandage","Apply more wax to stop the bleeding"],2,"Follow the blood exposure steps in order.","I"],["Put the levels of infection control in order from lowest to highest.",["Sanitation, sterilization, disinfection","Sanitation, disinfection, sterilization","Disinfection, sanitation, sterilization","Sterilization, disinfection, sanitation"],1,"Clean, then disinfect, then sterilize when it's needed.","I"],["A client's mole is uneven, has several colors and has grown since her last visit. You should:",["Avoid the area and recommend she see a dermatologist","Exfoliate over it","Cover it with makeup and ignore it","Tell her it's melanoma"],0,"Never diagnose. Refer her to a doctor.","I"],["A client in her 50s with years of sun exposure has deep wrinkles. Which skin layer has been damaged most?",["Subcutaneous fat only","Basal layer only","Dermis, where collagen and elastin break down","Stratum corneum"],2,"Sun breaks down collagen and elastin in the dermis.","I"],["A client with Fitzpatrick Type V asks for a strong peel. Your main concern is:",["Dark spots after the treatment (post-inflammatory hyperpigmentation)","Hair growth","Too much oil","Burning easily"],0,"Higher types darken more easily after irritation.","I"],["Why is hair removal most effective during the anagen phase?",["The hair is resting","The hair is still attached to its root and growing","The hair has already shed","The skin is thickest then"],1,"In anagen, the hair is attached and actively growing.","I"],["A client washes with harsh bar soap and complains her skin feels tight and irritated. The most likely reason is:",["She has rosacea","The soap stripped her acid mantle","Her skin is too acidic","She isn't drinking enough water"],1,"Alkaline soap disrupts skin's normal pH of about 4.5 to 5.5.","I"],["A new product is labeled 'flammable.' Where do you find its storage and first aid instructions?",["The client's record","The license","The intake form","The Safety Data Sheet"],3,"The SDS covers hazards, storage and first aid.","I"],["An esthetician notices her disinfectant solution is cloudy and has debris floating in it. What should she do?",["Add more concentrate to the same solution","Keep using it until the end of the week","Discard it and mix a fresh solution according to the label","Strain it and reuse it"],2,"Contaminated disinfectant stops working. Replace it.","I"],["A client's chart notes flushing and visible capillaries across the cheeks, triggered by heat and spicy food. Which treatment plan fits best?",["A paraffin mask and a strong scrub","Hot steam followed by vigorous tapotement","Microdermabrasion at high suction","Gentle cleansing and a cooling gel mask, with no steam"],3,"Those are signs of rosacea, so avoid heat and stimulation.","I"],["A client asks why her salicylic acid cleanser works better on her blackheads than her glycolic toner did. The best explanation is:",["Salicylic acid has a higher pH than water","Glycolic acid only works on dry hair","Salicylic acid sterilizes the skin","Salicylic acid is oil-soluble, so it can work inside the follicle"],3,"BHA dissolves in oil and reaches into the pore. AHA works on the surface.","I"],["A client's intake form says she started isotretinoin two months ago. She wants a brow wax. You should:",["Wax gently with hard wax","Use soft wax instead","Wax only one brow","Decline the wax; her skin is too fragile right now"],3,"Isotretinoin is a contraindication for waxing.","II"],["A client has oily skin with closed comedones. Which exfoliant is the best choice?",["Salicylic acid (BHA)","Lactic acid only","Paraffin","Rich cream mask"],0,"BHA is oil-soluble and clears pores.","II"],["A client tells you she has a pacemaker. Which service should you avoid?",["Effleurage","Cleansing","Makeup","Any electrical treatment, such as high frequency or galvanic"],3,"Electrical current can interfere with a pacemaker.","II"],["Which mask is the best choice for a client with rosacea?",["A cooling gel mask","A strong peel-off mask","A paraffin mask","A heated clay mask"],0,"Gel soothes and cools. Heat makes rosacea worse.","II"],["During particle microdermabrasion on the forehead, which technique is correct?",["Use it on sunburned skin","Work into the eye area","Hold the skin taut and use even passes","Press hard over pustules"],2,"Hold the skin taut, use even passes, and avoid active breakouts.","II"],["In what order should you finish a facial?",["Moisturizer, sunscreen, then home-care advice","Mask, then send her home","Sunscreen, moisturizer, then home-care advice","Home-care advice, then toner only"],0,"Moisturize, protect, then teach home care.","II"],["A client has red patches on her cheeks. Before foundation, you should apply a:",["Yellow highlighter","Bronzer","Pink blush","Green-tinted corrector"],3,"Green cancels red.","II"],["Which is correct when applying strip lashes?",["Use wet glue right away","Trim the band to fit, let the glue get tacky, and place it at the lash line","Put glue on the natural lashes","Apply it on the brow bone"],1,"Trim, tack, then place it close to the lash line.","II"],["A client asks you to cut off a skin tag. The correct response is:",["Wax over it","Freeze it with ice","Explain it's outside your scope and refer her to a physician","Snip it off with sterilized scissors"],2,"Invasive procedures are outside a New Mexico esthetician's scope.","II"],["While you wax a client's brow, the wax lifts a small patch of skin. You then learn she uses a prescription retinoid. Which step was missed?",["Applying a thicker layer of wax","Removing the wax more slowly","Reviewing her medications during the consultation","Using a larger strip"],2,"Retinoids thin the skin and are a contraindication for waxing.","II"],["You have just finished extractions on a client with acne-prone skin. Which electrical treatment helps kill bacteria on the area?",["Direct high frequency","Galvanic iontophoresis","Microcurrent lifting","Infrared heat"],0,"Direct high frequency has a germ-killing effect.","II"]]}};
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
-  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+t.dataset.v));
+const LV=[null,{c:"var(--l1)",m:"var(--l1-mist)",d:"Build the basics"},{c:"var(--l2)",m:"var(--l2-mist)",d:"Real exam vocabulary"},{c:"var(--l3)",m:"var(--l3-mist)",d:"Ask why and how"},{c:"var(--l4)",m:"var(--l4-mist)",d:"Real-world scenarios"}];
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;};
+const store={get(k,d){try{const v=localStorage.getItem("nmes:"+k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem("nmes:"+k,JSON.stringify(v));}catch(e){}}};
+
+function toast(t){const x=$("toast");x.textContent=t;x.classList.add("on");clearTimeout(x._t);x._t=setTimeout(()=>x.classList.remove("on"),1800);}
+function burst(){const b=$("burst"),cols=["#c9877f","#7d9d84","#9a87b8","#c09a5b","#e8b8ad"];for(let i=0;i<60;i++){const p=el("i");p.style.left=Math.random()*100+"vw";p.style.background=cols[i%5];p.style.animationDelay=(Math.random()*.5)+"s";p.style.transform="rotate("+(Math.random()*360)+"deg)";b.appendChild(p);}setTimeout(()=>b.innerHTML="",2600);}
+
+/* nav */
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+b.dataset.v));
+  window.scrollTo({top:0,behavior:"smooth"});
 });
-let cat='all', show='all', deck=[], i=0;
-const fc=document.getElementById('fc');
-function build(){deck=CARDS.filter(c=>cat==='all'||c[0]===cat);i=0;render();}
+
+/* flashcards */
+let known=new Set(store.get("known",[])),cat="all",show="all",focus=false,deck=[],i=0;
+function chips(box,items,cur,cb){box.innerHTML="";items.forEach(([v,t,cls])=>{const b=el("button","chip"+(cls?" "+cls:"")+(v===cur?" on":""),t);b.onclick=()=>{box.querySelectorAll(".chip").forEach(x=>x.classList.toggle("on",x===b));cb(v);};box.appendChild(b);});}
+chips($("cats"),[["all","All terms"],["Science","Science"],["Skin Care & Services","Skin Care & Services"],["NM Law","NM Law"]],cat,v=>{cat=v;build();});
+chips($("shows"),[["all","All 4 levels"],["1","Level 1","l1"],["2","Level 2","l2"],["3","Level 3","l3"],["4","Level 4","l4"]],show,v=>{show=v;render();});
+function build(keep){deck=CARDS.filter(c=>(cat==="all"||c[0]===cat)&&(!focus||!known.has(c[1])));if(!deck.length){focus=false;$("focus").textContent='Show only "still learning"';toast("You know every card in this topic!");deck=CARDS.filter(c=>cat==="all"||c[0]===cat);}if(!keep)i=0;if(i>=deck.length)i=0;render();}
 function render(){
-  const c=deck[i]; fc.classList.remove('flip');
-  document.getElementById('fcat').textContent=c[0];
-  document.getElementById('fnum').textContent=(i+1)+' / '+deck.length;
-  document.getElementById('fterm').textContent=c[1];
-  const back=document.getElementById('fback'); back.innerHTML='';
-  const bt=document.createElement('div'); bt.className='bterm'; bt.textContent=c[1]; back.appendChild(bt);
-  [1,2,3,4].filter(n=>show==='all'||String(n)===show).forEach(n=>{
-    const d=document.createElement('div'); d.className='voice v'+n;
-    const l=document.createElement('div'); l.className='vl'; l.textContent='Level '+n;
-    const p=document.createElement('p'); p.textContent=c[n+1];
-    d.appendChild(l); d.appendChild(p); back.appendChild(d);
-  });
-  document.getElementById('fcbar').style.width=((i+1)/deck.length*100)+'%';
-  document.getElementById('prev').disabled=i===0;
-  document.getElementById('next').textContent=i===deck.length-1?'Start again':'Next';
+  const c=deck[i],fc=$("fc");fc.classList.remove("flip");
+  setTimeout(()=>{
+    $("tag").textContent=c[0];$("term").textContent=c[1];$("known").hidden=!known.has(c[1]);
+    const back=$("back");back.innerHTML="";back.appendChild(el("h3",null,c[1]));
+    [1,2,3,4].filter(n=>show==="all"||String(n)===show).forEach(n=>{const d=el("div","voice");d.style.setProperty("--c",LV[n].c);d.style.setProperty("--m",LV[n].m);d.appendChild(el("b",null,"Level "+n));d.appendChild(el("p",null,c[n+1]));back.appendChild(d);});
+  },fc.classList.contains("flip")?0:0);
+  $("pos").textContent="Card "+(i+1)+" of "+deck.length;
+  const pool=CARDS.filter(x=>cat==="all"||x[0]===cat),k=pool.filter(x=>known.has(x[1])).length;
+  $("left").textContent=k+" of "+pool.length+" known";
+  $("bar").style.width=((i+1)/deck.length*100)+"%";
+  const all=known.size,pct=all/CARDS.length;
+  $("ringArc").style.strokeDashoffset=169.6*(1-pct);$("ringTxt").textContent=all;
+  $("helloTitle").textContent=all===0?"Let's get started":all<12?"Nice start":all<30?"You're building momentum":all<CARDS.length?"Almost there":"Every card mastered";
+  $("helloSub").textContent=all===0?"Tap a card to flip it. Mark the ones you know.":all+" of "+CARDS.length+" terms marked as known. Keep going.";
 }
-fc.onclick=()=>fc.classList.toggle('flip');
-document.getElementById('next').onclick=()=>{i=(i+1)%deck.length;render();};
-document.getElementById('prev').onclick=()=>{if(i>0){i--;render();}};
-document.getElementById('shuf').onclick=()=>{for(let k=deck.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[deck[k],deck[j]]=[deck[j],deck[k]];}i=0;render();};
-document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;document.querySelectorAll('[data-cat]').forEach(x=>x.classList.toggle('on',x===b));build();});
-document.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>{show=b.dataset.show;document.querySelectorAll('[data-show]').forEach(x=>x.classList.toggle('on',x===b));render();});
+const fc=$("fc");
+fc.onclick=()=>fc.classList.toggle("flip");
+fc.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();fc.classList.toggle("flip");}};
+function advance(){i=(i+1)%deck.length;render();}
+$("got").onclick=()=>{const t=deck[i][1],was=known.size;known.add(t);store.set("known",[...known]);if(known.size===CARDS.length&&was<CARDS.length){burst();toast("Every card mastered!");}else if(known.size%10===0&&known.size>was)toast(known.size+" terms known!");if(focus){build(true);}else advance();};
+$("learn").onclick=()=>{known.delete(deck[i][1]);store.set("known",[...known]);advance();};
+$("prev").onclick=()=>{i=(i-1+deck.length)%deck.length;render();};
+$("shuf").onclick=()=>{for(let k=deck.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[deck[k],deck[j]]=[deck[j],deck[k]];}i=0;render();toast("Shuffled");};
+$("focus").onclick=()=>{focus=!focus;$("focus").textContent=focus?"Show all cards":'Show only "still learning"';build();};
+let sx=null;fc.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;},{passive:true});
+fc.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60){e.preventDefault();dx<0?advance():$("prev").onclick();}});
 build();
 
-let lv=1, answered=0, right=0;
-function exam(){
-  const E=EXAMS[lv]; answered=0; right=0;
-  document.getElementById('lvnote').textContent=E.note;
-  document.getElementById('result').classList.remove('on');
-  const box=document.getElementById('qs'); box.innerHTML='';
-  E.qs.forEach((q,n)=>{
-    const d=document.createElement('div'); d.className='q';
-    const h=document.createElement('div'); h.className='qh';
-    const h1=document.createElement('span'); h1.textContent='Question '+(n+1);
-    const h2=document.createElement('span'); h2.textContent=q[4]==='I'?'Science':'Skin Care & Services';
-    h.appendChild(h1); h.appendChild(h2); d.appendChild(h);
-    const qt=document.createElement('div'); qt.className='qt'; qt.textContent=q[0]; d.appendChild(qt);
-    q[1].forEach((o,k)=>{
-      const b=document.createElement('button'); b.className='opt'; b.textContent=String.fromCharCode(65+k)+'. '+o;
-      b.onclick=()=>{
-        d.querySelectorAll('.opt').forEach((x,xi)=>{x.disabled=true;if(xi===q[2])x.classList.add('right');});
-        if(k===q[2]){right++;}else{b.classList.add('wrong');}
-        answered++; d.querySelector('.why').classList.add('on'); tally();
-      };
-      d.appendChild(b);
-    });
-    const y=document.createElement('div'); y.className='why'; y.textContent=q[3]; d.appendChild(y);
-    box.appendChild(d);
-  });
-  tally();
+/* quiz */
+let best=store.get("best",{}),lv=1,qi=0,right=0,missed=[];
+function levels(){const box=$("levels");box.innerHTML="";[1,2,3,4].forEach(n=>{const b=el("button","lv");b.style.setProperty("--c",LV[n].c);b.appendChild(el("div","n","Level "+n));b.appendChild(el("div","d",LV[n].d));b.appendChild(el("div","best",best[n]!=null?"Best: "+best[n]+"%"+(best[n]>=70?"  ✓":""):"Not taken yet"));b.onclick=()=>start(n);box.appendChild(b);});}
+function start(n){lv=n;qi=0;right=0;missed=[];$("quizHome").hidden=true;$("quizDone").hidden=true;$("quizRun").hidden=false;ask();window.scrollTo({top:0,behavior:"smooth"});}
+function ask(){
+  const Q=EXAMS[lv].qs,q=Q[qi],box=$("qcard");box.innerHTML="";
+  $("qpos").textContent="Question "+(qi+1)+" of "+Q.length;$("qscore").textContent=right+" correct";
+  $("qbar").style.width=(qi/Q.length*100)+"%";
+  const tg=el("span","qtag",q[4]==="I"?"Science":"Skin Care & Services");tg.style.setProperty("--c",LV[lv].c);tg.style.setProperty("--m",LV[lv].m);box.appendChild(tg);
+  box.appendChild(el("p","q",q[0]));
+  const why=el("div","why");const nx=el("button","btn got next",qi===Q.length-1?"See my results":"Next question");
+  q[1].forEach((o,k)=>{const b=el("button","opt");b.appendChild(el("span","k","ABCD"[k]));b.appendChild(el("span",null,o));
+    b.onclick=()=>{box.querySelectorAll(".opt").forEach((x,xi)=>{x.disabled=true;if(xi===q[2])x.classList.add("right");});
+      const ok=k===q[2];if(ok)right++;else{b.classList.add("wrong");missed.push(q);}
+      why.innerHTML="";why.appendChild(el("strong",null,ok?["Nice work.","Exactly right.","You got it.","Correct."][qi%4]:"Not quite. The answer is "+"ABCD"[q[2]]+"."));why.appendChild(el("span",null,q[3]));
+      why.classList.add("on");nx.classList.add("on");$("qscore").textContent=right+" correct";nx.focus({preventScroll:true});};
+    box.appendChild(b);});
+  box.appendChild(why);nx.onclick=()=>{qi++;qi<Q.length?ask():done();};box.appendChild(nx);
 }
-function tally(){
-  const n=EXAMS[lv].qs.length;
-  document.getElementById('scoretxt').textContent=answered<n?(answered+' of '+n+' answered · '+right+' correct'):('Score: '+right+' / '+n);
-  if(answered===n){
-    const pct=Math.round(right/n*100), r=document.getElementById('result');
-    let msg=pct>=70?'That meets the 70% passing mark. ':'Not at 70% yet. Review the flashcards for the ones you missed and try again. ';
-    if(pct>=70&&lv<4) msg+='Ready to try Level '+(lv+1)+'.';
-    if(pct>=70&&lv===4) msg+='This level is closest to the real exam.';
-    r.textContent=pct+'% · '+msg; r.classList.add('on');
-  }
+function done(){
+  const n=EXAMS[lv].qs.length,pct=Math.round(right/n*100),pass=pct>=70;
+  if(best[lv]==null||pct>best[lv]){best[lv]=pct;store.set("best",best);}
+  $("quizRun").hidden=true;const d=$("quizDone");d.hidden=false;d.innerHTML="";
+  const r=el("div","result");const b=el("div","big",pct+"%");b.style.color=pass?"var(--good)":LV[lv].c;r.appendChild(b);
+  r.appendChild(el("h2",null,pass?(lv<4?"Level "+lv+" passed!":"Exam-ready work!"):"Good practice. You're getting closer."));
+  r.appendChild(el("p",null,right+" of "+n+" correct. "+(pass?(lv<4?"You're ready to try Level "+(lv+1)+".":"Level 4 is the closest to the real exam. Keep this up."):"The passing mark is 70%. Review the cards below, then try again.")));
+  const bt=el("div","rbtns");
+  if(pass&&lv<4){const up=el("button","btn got","Start Level "+(lv+1));up.onclick=()=>start(lv+1);bt.appendChild(up);}
+  const again=el("button","btn"+(pass&&lv<4?"":" got"),"Retake Level "+lv);again.onclick=()=>start(lv);bt.appendChild(again);
+  const home=el("button","btn","All levels");home.onclick=()=>{d.hidden=true;$("quizHome").hidden=false;levels();};bt.appendChild(home);
+  r.appendChild(bt);
+  if(missed.length){const m=el("div","missed");m.appendChild(el("h4",null,"Review these"));missed.forEach(q=>{const x=el("div",null,q[0]);x.appendChild(el("span",null,q[1][q[2]]));m.appendChild(x);});r.appendChild(m);}
+  d.appendChild(r);if(pass)burst();window.scrollTo({top:0,behavior:"smooth"});
 }
-document.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{lv=+b.dataset.lv;document.querySelectorAll('[data-lv]').forEach(x=>x.classList.toggle('on',x===b));exam();window.scrollTo(0,0);});
-document.getElementById('reset').onclick=exam;
-exam();
+$("quit").onclick=()=>{$("quizRun").hidden=true;$("quizHome").hidden=false;levels();};
+levels();
 </script>
 </body>
 </html>
